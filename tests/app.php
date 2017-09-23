@@ -41,11 +41,17 @@ class UserTest extends TestCase
 
 }
 
-$test = new UserTest();
-$test->testValidateEmptyValues();
+$class = new \ReflectionClass('\tests\UserTest');
 
-$test = new UserTest();
-$test->testValidateWrongValues();
+foreach ($class->getMethods() as $method) {
+    if (substr($method->name, 0, 4) == 'test') {
+        echo 'Test ' . $method->class . '::' . $method->name . PHP_EOL . PHP_EOL;
 
-$test = new UserTest();
-$test->testValidateCorrectValues();
+        /**
+         * @var TestCase $test
+         */
+        $test = new $method->class;
+        $test->{$method->name}();
+        echo PHP_EOL;
+    }
+}
