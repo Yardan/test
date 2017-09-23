@@ -8,37 +8,25 @@ require(__DIR__ . '/_bootstrap.php');
 
 class UserTest
 {
+    protected function assert($condition, $message = '')
+    {
+        echo $message;
+
+        if ($condition) {
+            echo ' Ok' . PHP_EOL;
+        } else {
+            echo ' Fail' . PHP_EOL;
+            exit();
+        }
+    }
+
     public function testValidateEmptyValues()
     {
         $user = new User();
 
-        echo 'validate empty username ane email';
-
-        if ($user->validate() == false) {
-            echo ' Ok'.PHP_EOL;
-        } else {
-            echo ' Fail'.PHP_EOL;
-            exit();
-        }
-
-        echo 'check empty username error';
-
-        if (array_key_exists('username', $user->getErrors())) {
-            echo ' Ok'.PHP_EOL;
-        } else {
-            echo ' Fail'.PHP_EOL;
-            exit();
-        }
-
-
-        echo 'check empty email error';
-
-        if (array_key_exists('email', $user->getErrors())) {
-            echo ' Ok'.PHP_EOL;
-        } else {
-            echo ' Fail'.PHP_EOL;
-            exit();
-        }
+        $this->assert($user->validate() == false, 'model is not valid');
+        $this->assert(array_key_exists('username', $user->getErrors()), 'check empty username error');
+        $this->assert(array_key_exists('email', $user->getErrors()), 'check empty email error');
     }
 }
 
