@@ -12,10 +12,24 @@ class UserTest extends TestCase
     {
         parent::setUp();
 
-        User::deleteAll([
-            'username' => 'TestUsername',
-            'email' => 'test@mail.ru',
+        User::deleteAll();
+
+        \Yii::$app->db->createCommand()->insert(User::tableName(), [
+            'username' => 'user',
+            'email' => 'user@mail.ru',
+        ])->execute();
+    }
+
+    public function testValidateExistedValues()
+    {
+        $user = new User([
+            'username' => 'user',
+            'email' => 'user@mail.ru',
         ]);
+
+        $this->assertFalse($user->validate(), 'model is not valid');
+        $this->assertArrayHasKey('username', $user->getErrors(), 'check existed username error');
+        $this->assertArrayHasKey('email', $user->getErrors(), 'check existed email error');
     }
 
     public function testSaveIntoDatabase()
