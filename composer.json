@@ -1,6 +1,6 @@
 {
     "require": {
         "yiisoft/yii2": "^2.0",
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "^6.3"
     }
 }

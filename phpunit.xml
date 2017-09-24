@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit bootstrap="./tests/_bootstrap.php"
-
+         backupGlobals="true"
          colors="true"
          varbose="true"
          convertErrorsToExceptions="true"
