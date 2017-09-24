@@ -98,3 +98,20 @@ composer require phpunit/dbunit
         return $this->createXMLDataSet(dirname(__FILE__).'/../_data/users.xml');
     }
 ```
+
+
+Code coverage
+-------------
+1. Add whitelist to phpunit.xml and add directory for checking code coverage
+```
+        <whitelist>
+            <directory suffix=".php">./models</directory>
+        </whitelist>
+```
+
+2. Execute command:
+```
+./vendor/bin/phpunit --coverage-html ./report
+```
+
+This command will generate report to directory ./report
