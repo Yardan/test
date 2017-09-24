@@ -2,9 +2,8 @@
 namespace tests\unit;
 
 use app\models\User;
-use tests\TestCase;
 
-class UserTest extends TestCase
+class UserTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
