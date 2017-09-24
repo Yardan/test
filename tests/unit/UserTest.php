@@ -2,20 +2,19 @@
 namespace tests\unit;
 
 use app\models\User;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\DbUnit\TestCase;
 
 class UserTest extends TestCase
 {
-    public function setUp()
+    public function getConnection()
     {
-        parent::setUp();
+        $pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        return $this->createDefaultDBConnection($pdo, $GLOBALS['DB_DBNAME']);
+    }
 
-        User::deleteAll();
-
-        \Yii::$app->db->createCommand()->insert(User::tableName(), [
-            'username' => 'user',
-            'email' => 'user@mail.ru',
-        ])->execute();
+    public function getDataSet()
+    {
+        return $this->createXMLDataSet(dirname(__FILE__).'/../_data/users.xml');
     }
 
     public function testValidateExistedValues()

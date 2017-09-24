@@ -1,5 +1,9 @@
 Testing with PHPUnit and Codeception
 ===============================
+REQUIREMENTS
+------------
+1. PHP >= 5.4 with modules
+2. SQLite
 
 INSTALLATION
 ------------
@@ -61,3 +65,27 @@ and choose Path to PHPUnit.phar and set it. Then choose phpunit.xml config for p
 4. Edit configuration-> + -> PHPUnit. Rename to Unit, set config file if need.
 
 5. Choose Unit and click to green arrow.
+
+
+DbUnit
+----------
+1. Install
+```
+composer require phpunit/dbunit
+```
+
+2. Extend Test class from PHPUnit\DbUnit\TestCase
+
+3. Realize abstract methods:
+```
+    public function getConnection()
+    {
+        $pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        return $this->createDefaultDBConnection($pdo, $GLOBALS['DB_DBNAME']);
+    }
+
+    public function getDataSet()
+    {
+        return $this->createXMLDataSet(dirname(__FILE__).'/../_data/users.xml');
+    }
+```
