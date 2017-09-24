@@ -1,5 +1,14 @@
 Testing with PHPUnit and Codeception
 ===============================
+This repository only for learning testing.
+You can find original links below:
+
+All about testing tutorial:
+http://www.elisdn.ru/blog/78/yii2-codeception-testing
+
+Code of this testing tutorial:
+https://github.com/ElisDN/webinar-tests
+
 REQUIREMENTS
 ------------
 1. PHP >= 5.4 with modules
