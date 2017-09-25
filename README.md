@@ -139,7 +139,28 @@ composer require "codeception/specify=*"
 composer require "codeception/verify=*"
 ```
 
-3. Run
+3. Checking is codeception work
 ```
 ./vendor/bin/codecept
+```
+4. Delete ./test folder and ./phpunit.xml
+5. Create configuration
+```
+./vendor/bin/codecept bootstrap
+```
+6. Copy ./tests/bin/yii from previous deleted version, add configuration
+in ./tests/config directory
+
+7. Generate UserTest:
+```
+./vendor/bin/codecept generate:test unit UserTest
+```
+8. Copy non DbUnit methods from previous UserTest class.
+9. Build
+```
+./vendor/bin/codecept build
+```
+10. Dun it
+```
+./vendor/bin/codecept run
 ```
