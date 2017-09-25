@@ -2,9 +2,8 @@
 namespace tests\unit;
 
 use app\models\User;
-use PHPUnit\DbUnit\TestCase;
 
-class UserTest extends TestCase
+class UserTest extends \PHPUnit_Extensions_Database_TestCase
 {
     /**
      * This method is called before the first test of this test class is run.
