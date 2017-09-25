@@ -115,3 +115,31 @@ Code coverage
 ```
 
 This command will generate report to directory ./report
+
+
+Codeception
+-----------
+1. Prepare. Remove all new versions of phpunit and dbunit
+```
+composer remove phpunit/dbunit
+composer remove phpunit/phpunit
+composer require phpunit/phpunit:"~4.8"
+composer require phpunit/dbunit:"~1.4"
+```
+In your composer.json file you should see:
+```json
+"phpunit/phpunit": "~4.8",
+"phpunit/dbunit": "~1.4",
+```
+
+2. Installation
+```
+composer require "codeception/codeception=2.1.*"
+composer require "codeception/specify=*"
+composer require "codeception/verify=*"
+```
+
+3. Run
+```
+./vendor/bin/codecept
+```
