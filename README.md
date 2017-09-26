@@ -163,4 +163,5 @@ in ./tests/config directory
 10. Dun it
 ```
 ./vendor/bin/codecept run
+./vendor/bin/codecept run unit
 ```

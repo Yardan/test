@@ -29,9 +29,9 @@ class UserTest extends \Codeception\TestCase\Test
             'username' => 'user',
             'email' => 'user@mail.ru',
         ]);
-        $this->assertFalse($user->validate(), 'model is not valid');
-        $this->assertArrayHasKey('username', $user->getErrors(), 'check existed username error');
-        $this->assertArrayHasKey('email', $user->getErrors(), 'check existed email error');
+        expect('model is not valid', $user->validate())->false();
+        expect('check existed username error', $user->getErrors())->hasKey('username');
+        expect('check existed email error', $user->getErrors())->hasKey('email');
     }
     public function testSaveIntoDatabase()
     {
@@ -39,14 +39,15 @@ class UserTest extends \Codeception\TestCase\Test
             'username' => 'TestUsername',
             'email' => 'test@mail.ru',
         ]);
-        $this->assertTrue($user->save(), 'model is saved');
+
+        expect('model is saved', $user->save())->true();
     }
     public function testValidateEmptyValues()
     {
         $user = new User();
-        $this->assertFalse($user->validate(), 'model is not valid');
-        $this->assertArrayHasKey('username', $user->getErrors(), 'check empty username error');
-        $this->assertArrayHasKey('email', $user->getErrors(), 'check empty email error');
+        expect('model is not valid', $user->validate())->false();
+        expect('check empty username error', $user->getErrors())->hasKey('username');
+        expect('check empty email error', $user->getErrors())->hasKey('email');
     }
     public function testValidateWrongValues()
     {
@@ -54,16 +55,18 @@ class UserTest extends \Codeception\TestCase\Test
             'username' => 'Wrong % Username',
             'email' => 'wrong_email',
         ]);
-        $this->assertFalse($user->validate(), 'validate incorrect username and email');
-        $this->assertArrayHasKey('username', $user->getErrors(), 'check incorrect username error');
-        $this->assertArrayHasKey('email', $user->getErrors(), 'check incorrect email error');
+
+        expect('validate incorrect username and email', $user->validate())->false();
+        expect('check incorrect username error', $user->getErrors())->hasKey('username');
+        expect('check incorrect email error', $user->getErrors())->hasKey('email');
     }
+
     public function testValidateCorrectValues()
     {
         $user = new User([
             'username' => 'CorrectUsername',
             'email' => 'correct@mail.ru',
         ]);
-        $this->assertTrue($user->validate(), 'correct model is valid');
+        expect('correct model is valid', $user->validate())->true();
     }
 }
