@@ -160,8 +160,16 @@ in ./tests/config directory
 ```
 ./vendor/bin/codecept build
 ```
-10. Dun it
+10. Run it
 ```
 ./vendor/bin/codecept run
 ./vendor/bin/codecept run unit
 ```
+
+11. Add Db module
+    - Add Db module to codeception.yml
+    - Add Db to unit.suit.yml
+    - add SQL to tests/d_data/dump.sql
+    - delete Db changing in _before()
+    
+See commit: 18371e765242d80766ab15633fa3eee63ce8dcc6
