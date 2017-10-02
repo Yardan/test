@@ -16,12 +16,6 @@ class UserTest extends \Codeception\TestCase\Test
 
     protected function _before()
     {
-        User::deleteAll();
-        \Yii::$app->db->createCommand()->insert(User::tableName(), [
-            'username' => 'user',
-            'email' => 'user@mail.ru',
-        ])->execute();
-
         $this->user = new User();
     }
 
